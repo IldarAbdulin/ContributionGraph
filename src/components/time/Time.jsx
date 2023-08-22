@@ -58,22 +58,20 @@ export const Time = () => {
         >
           {arrOfSquares.map((_, index) => {
             const date = moment(dateStart).add(index, 'day');
-            let datToDay = `${date.format('MMM')}, ${date.format(
+            const dayToDay = `${date.format('MMM')}, ${date.format(
               'dddd'
             )} ${date.format('D')}, ${date.format('Y')}`;
-            console.log(date.format('MMM '));
-            const sqDate = date.format(`Y-M-D`);
             const result = data.find(
               (d) =>
                 moment(date).format('DDMMYYYY') ===
                 moment(d.date).format('DDMMYYYY')
             );
-            let colorV = color * result?.value;
+            const colorV = color * result?.value;
             return (
               <Square
                 key={index}
                 square={index}
-                date={datToDay}
+                date={dayToDay}
                 colorV={colorV}
                 contributions={result?.value ? result?.value : `No`}
               />
