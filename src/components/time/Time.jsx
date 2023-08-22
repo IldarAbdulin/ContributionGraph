@@ -20,7 +20,7 @@ export const Time = () => {
   const arrOfMonths = Array.from(new Array(Math.floor(totalDays / 7)));
   const dateStart = date[0];
   const dataArr = Object.entries(db);
-  let data = dataArr.map((val) => {
+  const data = dataArr.map((val) => {
     return {
       date: val[0],
       value: val[1],
@@ -28,7 +28,7 @@ export const Time = () => {
   });
   const max = Math.max(...data.map((d) => d.value));
   const min = Math.min(0, ...data.map((d) => d.value));
-  const color = 2 / (max + min);
+  const color = 2 / (max - min);
   return (
     <Box sx={{ mt: 5 }}>
       <Box sx={{ display: 'flex', paddingLeft: '20px', mb: '7px' }}>
@@ -58,7 +58,11 @@ export const Time = () => {
         >
           {arrOfSquares.map((_, index) => {
             const date = moment(dateStart).add(index, 'day');
-            let sqDate = date.format(`Y-M-D`);
+            let datToDay = `${date.format('MMM')}, ${date.format(
+              'dddd'
+            )} ${date.format('D')}, ${date.format('Y')}`;
+            console.log(date.format('MMM '));
+            const sqDate = date.format(`Y-M-D`);
             const result = data.find(
               (d) =>
                 moment(date).format('DDMMYYYY') ===
@@ -69,9 +73,9 @@ export const Time = () => {
               <Square
                 key={index}
                 square={index}
-                date={sqDate}
+                date={datToDay}
                 colorV={colorV}
-                contributions={result?.value ? result?.value : 0}
+                contributions={result?.value ? result?.value : `No`}
               />
             );
           })}
@@ -89,7 +93,7 @@ export const Time = () => {
         >
           Меньше
         </Typography>
-        <Square contributions={0} />
+        <Square contributions={`No`} />
         <Square colorV={0.10256410256410256} contributions={`1-9`} />
         <Square colorV={0.3692307692307693} contributions={`10-19`} />
         <Square colorV={0.7692307692307693} contributions={`20-29`} />

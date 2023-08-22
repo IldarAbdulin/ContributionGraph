@@ -19,7 +19,9 @@ export const Square = ({ colorV, contributions, date }) => {
         }}
       >
         <Box className={date ? 'square-info-small' : 'square-info'}>
-          <p style={{ color: '#EDEDED', letterSpacing: '1px' }}>
+          <p
+            style={{ color: '#EDEDED', letterSpacing: '1px', fontSize: '12px' }}
+          >
             {contributions} contributions
           </p>
           {date && <p style={{ color: '#7C7C7C' }}>{date}</p>}
