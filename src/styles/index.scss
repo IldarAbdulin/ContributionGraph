@@ -1,0 +1,54 @@
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: 'Inter', sans-serif;
+}
+.Jan ~ .Jan,
+.Feb ~ .Feb,
+.Mar ~ .Mar,
+.Apr ~ .Apr,
+.May ~ .May,
+.Jun ~ .Jun,
+.Jul ~ .Jul,
+.Aug ~ .Aug,
+.Sep ~ .Sep,
+.Oct ~ .Oct,
+.Nov ~ .Nov,
+.Dec ~ .Dec {
+  visibility: hidden;
+  margin-left: 10px;
+}
+.square {
+  position: relative;
+  &-info {
+    display: none;
+    position: absolute;
+    width: 130px;
+    padding: 2px 5px;
+    background-color: #030303;
+    border-radius: 10px;
+    top: -250%;
+    text-align: center;
+    font-size: 10px;
+  }
+  &-info-small {
+    display: none;
+    position: absolute;
+    width: 130px;
+    padding: 2px 5px;
+    background-color: #030303;
+    border-radius: 10px;
+    top: -400%;
+    text-align: center;
+    font-size: 10px;
+  }
+  &:hover &-info-small {
+    z-index: 1;
+    display: block;
+  }
+  &:hover &-info {
+    z-index: 1;
+    display: block;
+  }
+}
