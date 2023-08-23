@@ -1,10 +1,10 @@
 import React from 'react';
+import axios from 'axios';
 import moment from 'moment';
 import { Box, Typography } from '@mui/material';
 import { Week } from '../week/Week';
 import { Months } from '../months/Months';
 import { Square } from '../square/Square';
-import db from '../../db/CG.json';
 
 const weekDays = {
   0: 'Пн',
@@ -13,13 +13,19 @@ const weekDays = {
 };
 
 export const Time = () => {
+  const [cgData, setCgData] = React.useState({});
+  React.useEffect(() => {
+    axios
+      .get('https://dpg.gg/test/calendar.json')
+      .then(({ data }) => setCgData(data));
+  }, []);
   const date = [moment().add(-365, 'days'), moment()];
   const totalDays = Math.abs(date[0].diff(date[1], 'days'));
   const arrOfSquares = Array.from(new Array(totalDays + 1));
   const arrOfWeeks = Array.from(new Array(7));
   const arrOfMonths = Array.from(new Array(Math.floor(totalDays / 7)));
   const dateStart = date[0];
-  const dataArr = Object.entries(db);
+  const dataArr = Object.entries(cgData);
   const data = dataArr.map((val) => {
     return {
       date: val[0],
